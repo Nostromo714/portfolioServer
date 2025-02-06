@@ -1,26 +1,27 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
 const dotenv = require('dotenv');
-const port = process.env.PORT;
+dotenv.config(); // Load environment variables from the .env file
+const { dbConnect } = require("./db");
+const cors = require('cors');
+const PORT = process.env.PORT;
 
-// Load environment variables from the .env file
-dotenv.config();
+
+// Connect to MongoDB
+dbConnect();
 
 
 // Middleware
 app.use(cors());
 app.use(express.json()); // Parse incoming requests with JSON payload
+
 // Basic route 
 app.get('/', (req, res) => {
     res.send('Hello from the backend!');
 });
 
 
-
-
-
 // Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+    console.log('Server is running');
 });
