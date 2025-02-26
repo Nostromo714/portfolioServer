@@ -9,7 +9,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 const dbConnect = async () => {
     try {
-        await mongoose.connect(MONGO_URI), 
+        await mongoose.connect(MONGO_URI);
         console.log('Database connected successfully');
     } catch (err) {
         console.error(`Database connection error: ${err.message}`);
