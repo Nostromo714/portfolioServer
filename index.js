@@ -11,7 +11,6 @@ const contactRouter = require('./routers/contact')
 // Connect to MongoDB
 dbConnect();
 
-
 // Middleware
 app.use(cors());
 app.use(express.json()); // Parse incoming requests with JSON payload
@@ -23,7 +22,6 @@ app.get('/', (req, res) => {
 
 // Use the contact route
 app.use('/contact', contactRouter);
-
 
 // Start the server
 app.listen(PORT, () => {
