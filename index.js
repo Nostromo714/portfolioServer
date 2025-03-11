@@ -23,6 +23,17 @@ app.get('/', (req, res) => {
 // Use the contact route
 app.use('/contact', contactRouter);
 
+// Serve the React app in production
+if (process.env.NODE_ENV === 'production') {
+    // Serve static files from React's build folder
+    app.use(express.static(path.join(__dirname, 'client/build')));
+
+    // For any routes that don't match an API route, serve the React app
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    });
+}
+
 // Start the server
 app.listen(PORT, () => {
     console.log('Server is running');
